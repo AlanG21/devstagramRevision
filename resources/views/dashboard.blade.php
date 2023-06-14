@@ -14,11 +14,21 @@ Tu Cuenta
 
 
             </div>
-            <div class=" md:w-8/12 lg:w-6/12 px-5">
-            
-                <p class=" text-gray-700 text-2xl"> {{auth()->user()->username}}</p>
+            <div class=" md:w-8/12 lg:w-6/12 px-5 md:flex-col md:justify-center">
+              
+                <p class=" text-gray-700 text-2xl"> {{$user->username}}</p>
 
+                  <!-- Añadir mas contenido-->
+                  <p class="text-gray-800 text-sm mb-3 font-bold mt-5">0
+                    <span class="font-normal">Seguidores</span>
+                </p>
+                <p class="text-gray-800 text-sm mb-3 font-bold mt-5">0
+                    <span class="font-normal">Siguiendo</span>
+                </p>
+                <p class="text-gray-800 text-sm mb-3 font-bold mt-5">0
+                    <span class="font-normal">Post</span>
+                </p>
             </div>
         </div>
-</div>
+    </div>
 @endsection

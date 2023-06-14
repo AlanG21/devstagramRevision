@@ -12,12 +12,17 @@ Inicia sesion en Devstagram
 
     </div>
 
-    <div class=" md:w-4/12 bg-white p-6 rounded-lg shadow-xl"  >
+    <div class="md:w-4/12 bg-white p-6 rounded-lg shadow-xl"  >
     
-        <form method=" POST" action="{{route('login')}}" novalidate>
-            @csrf
-          
+        <form method="POST" action="{{route('login')}}" novalidate>
             
+         @csrf
+            
+         @if(session('mensaje'))
+            <p class="bg-red-600 text-white my-2 rouded-lg text-sm p-2 text-center">
+                {{ session('mensaje') }}
+            </p>  
+         @endif
             <div class=" mb-5">
                 <label for ="email" class="mb-2 block uppercase text-gray-500 font-bold">
                     Email
@@ -33,9 +38,8 @@ Inicia sesion en Devstagram
                 value="{{old('email')}}"
                 />
                 @error('email')
-                <p class=" bg-red-600 text-white my-2 rouded-lg text-sm p-2 text-center">{{$message}}</p>                    
+                <p class="bg-red-600 text-white my-2 rouded-lg text-sm p-2 text-center">{{$message}}</p>                    
             @enderror
-            </div>
 
             <div class=" mb-5">
                 <label for ="password" class="mb-2 block uppercase text-gray-500 font-bold">
@@ -54,7 +58,9 @@ Inicia sesion en Devstagram
             @enderror
             </div>
 
-            
+            <div class="mb-5">
+                <input type="checkbox" name="remember"><label class=" text-gray-500 text-sm ">Mantener mi sesion abierta</label>
+            </div>
            
 
             <input type="submit"
@@ -74,4 +80,3 @@ Inicia sesion en Devstagram
 
 
 @endsection
-

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Cache\RedisTagSet;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
@@ -13,14 +14,22 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    public function sotre(Request $request)
+    public function store(Request $request)
     {
+       
+
         $this->validate($request, [
             'email' => 'required|email',
-            'password' => 'required'
+            'password' => 'required',
         
         ]);
+      
+
+        if(!auth()->attempt($request->only('email','password'), $request->remember)){
+            return back()->with('mensaje', 'Credenciales incorrectas');
+            
+        }
+
+        return redirect()->route('posts.index', auth()->user()->username);
     }
-
-
 }
