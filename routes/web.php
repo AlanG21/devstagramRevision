@@ -49,3 +49,6 @@ Route::post('/imagenes', [ImagenController::class,'store'])->name('imagenes.stor
 
 //Ruta para almacenar las imagenes
 Route::post('/posts', [PostController::class, 'store'])->name('post.store');
+
+//Ruta para vista del muro de perfil de usuario autenticado
+Route::get('/{user:username}',[PostController::class, 'index'])->name("posts.index");

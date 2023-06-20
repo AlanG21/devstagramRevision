@@ -21,11 +21,16 @@ class PostController extends Controller
 
     //
     public function index(User $user)
-    {
-        $posts = Post::where('user_id', $user->id)->get();
-            
+    {   
+        //Obtenemos  los post de la publicacion del usuario
+        $posts = Post::where('user_id', $user->id)->paginate(6);
+            //Mostramos los post del usuario
+            // dd($posts);
+
+
         return view('dashboard', [
             'user' => $user,
+            //Pasamos los post de la publicacion a la vista del dashboard
             'posts' => $posts,
         ]);
     }
@@ -64,7 +69,7 @@ class PostController extends Controller
     
 
     //Redireccionar al muro principal despues de guardar el post de la publicacion
-    return redirect()->route('posts.index');
+    return redirect()->route('posts.index', auth()->user()->username);
 
 }
 }
