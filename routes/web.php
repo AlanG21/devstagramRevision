@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
@@ -49,3 +50,15 @@ Route::post('/imagenes', [ImagenController::class,'store'])->name('imagenes.stor
 
 //Ruta para almacenar las imagenes
 Route::post('/posts', [PostController::class, 'store'])->name('post.store');
+
+//Ruta para mostrar post de publicacion de imagenes
+Route::get('/{user:username}/posts/{post}',[PostController::class, 'show'])->name('posts.show');
+
+//Ruta para generar comentarios
+Route::post('/{user:username}/posts/{post}',[ComentarioController::class, 'store'])->name('comentarios.store');
+
+//Ruta para vista del muro de perfil de usuario autenticado con username en URL
+Route::get('/{user:username}',[PostController::class, 'index'])->name("posts.index");
+
+//Ruta para eliminar un comentario con el destroy
+Route::delete('/{user:username}/posts/{post}/comentarios/{comentario}',[ComentarioController::class,'destroy'])->name('comentarios.destroy');

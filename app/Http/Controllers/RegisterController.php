@@ -56,8 +56,7 @@ public function store(Request $request) {
 
 
     //redireccionar
-    return redirect()->route('posts.index');
-
+    return redirect()->route('posts.index',  auth()->user()->username);
 
     }
 
