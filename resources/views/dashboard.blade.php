@@ -44,7 +44,8 @@
 
         @foreach ( $posts as $post )
         <div>
-            <a >
+               <!-- pasamos el valor de las variables post y username al URL -->
+            <a href="{{route('posts.show', ['post'=>$post, 'user'=>$user])}}" >
                 <img src="{{asset('uploads' . '/' . $post ->imagen)}}" alt="Imagen del post {{$post->titulo}}">
                 
 
